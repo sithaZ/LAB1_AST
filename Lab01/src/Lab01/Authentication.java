@@ -10,7 +10,6 @@ public class Authentication {
     private final String API_URL = "http://localhost:3000/api/login";
 
     public CompletableFuture<Boolean> login(String username, String password) {
-       
         String json = String.format("{\"username\":\"%s\", \"password\":\"%s\"}", username, password);
         
         HttpClient client = HttpClient.newHttpClient();
@@ -22,6 +21,5 @@ public class Authentication {
 
         return client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
                 .thenApply(response -> response.statusCode() == 201); 
-                // NestJS returns 201 Created for successful POST by default
     }
 }
